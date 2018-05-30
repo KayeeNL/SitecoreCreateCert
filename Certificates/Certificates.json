@@ -1,0 +1,21 @@
+{
+  "Parameters": {
+    "CertificateDnsName": { "Type": "string" },
+    "CertificateName": { "Type": "string" },
+    "CertPath": { "Type": "string", "Description": "The physical path on disk where certificates will be stored.", "DefaultValue": "c:\\certificates" },
+    "RootCertFileName": { "Type": "string", "Description": "The file name of the root certificate to be created.", "DefaultValue": "SitecoreRootCert" }
+  },
+  "Modules": ["InstallSitecoreConfiguration"],
+  "Tasks": {
+    "CreateCertificate": {
+      "Type": "InstallSitecoreConfiguration",
+      "Params": {
+        "Path": ".\\Certificates\\CreateCert.json",
+        "CertificateDnsName": "[parameter('CertificateDnsName')]",
+        "CertificateName": "[parameter('CertificateName')]",
+        "RootCertFileName": "[parameter('RootCertFileName')]",
+        "CertPath": "[parameter('CertPath')]"
+      }
+    }
+  }
+}
